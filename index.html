@@ -1,30 +1,61 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0c10">
   <title>Тренировки</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
+  <!-- общие градиенты для иконок и колец -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="tabgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff3b30"/><stop offset="1" stop-color="#ff8a00"/></linearGradient>
+      <linearGradient id="restgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff3b30"/><stop offset="1" stop-color="#ff8a00"/></linearGradient>
+      <linearGradient id="chartgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3b30" stop-opacity=".35"/><stop offset="1" stop-color="#ff3b30" stop-opacity="0"/></linearGradient>
+      <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="9" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+  </svg>
+
+  <main id="view"><div class="loading"><div class="spinner"></div>Загрузка…</div></main>
+
   <div id="banner" hidden></div>
-  <main id="view"><div class="loading">Загрузка…</div></main>
 
   <nav id="tabs">
-    <button data-tab="catalog" class="active"><span class="ti">📚</span><span>Упражнения</span></button>
-    <button data-tab="builder"><span class="ti">🏗</span><span>Тренировка</span><span class="badge" id="badge" hidden></span></button>
-    <button data-tab="programs"><span class="ti">📋</span><span>Программы</span></button>
-    <button data-tab="progress"><span class="ti">📈</span><span>Прогресс</span></button>
+    <button data-tab="catalog" class="active" aria-label="Упражнения">
+      <svg viewBox="0 0 24 24"><path d="M6.5 7v10M17.5 7v10M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/></svg><span>Упражнения</span>
+    </button>
+    <button data-tab="builder" aria-label="Тренировка">
+      <svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="3"/><path d="M9 3.5h6v3H9zM9 11h6M9 15h4"/></svg><span>Тренировка</span>
+      <span class="badge" id="badge" hidden></span>
+    </button>
+    <button data-tab="programs" aria-label="Программы">
+      <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg><span>Программы</span>
+    </button>
+    <button data-tab="progress" aria-label="Прогресс">
+      <svg viewBox="0 0 24 24"><path d="M4 20h16M7 16v-4M12 16V7M17 16v-6"/></svg><span>Прогресс</span>
+    </button>
   </nav>
 
-  <section id="page" hidden></section>
-  <div id="modal" hidden></div>
+  <section id="page" aria-live="polite"></section>
+  <div id="sheet"><div class="sheet"></div></div>
   <div id="toast"></div>
 
-  <script src="data.js?v=4"></script>
-  <script src="evaluator.js?v=4"></script>
-  <script src="storage.js?v=4"></script>
-  <script src="app.js?v=4"></script>
+  <script src="data.js?v=14"></script>
+  <script src="body.js?v=14"></script>
+  <script src="evaluator.js?v=14"></script>
+  <script src="storage.js?v=14"></script>
+  <script src="app-core.js?v=14"></script>
+  <script src="app-tabs.js?v=14"></script>
+  <script src="app-train.js?v=14"></script>
+  <script src="app-main.js?v=14"></script>
 </body>
 </html>
